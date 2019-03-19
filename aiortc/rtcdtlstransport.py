@@ -19,11 +19,12 @@ from OpenSSL import crypto
 from pyee import EventEmitter
 from pylibsrtp import Policy, Session
 
-from . import clock, rtp
-from .rtcrtpparameters import RTCRtpReceiveParameters, RTCRtpSendParameters
+#from . import clock, rtp
+from . import rtp
+#from .rtcrtpparameters import RTCRtpReceiveParameters, RTCRtpSendParameters
 from .rtp import (RtcpByePacket, RtcpPacket, RtcpPsfbPacket, RtcpRrPacket,
                   RtcpRtpfbPacket, RtcpSrPacket, RtpPacket, is_rtcp)
-from .stats import RTCStatsReport, RTCTransportStats
+#from .stats import RTCStatsReport, RTCTransportStats
 
 binding = Binding()
 binding.init_static_locks()
@@ -574,21 +575,21 @@ class RTCDtlsTransport(EventEmitter):
         assert self._data_receiver is None
         self._data_receiver = receiver
 
-    def _register_rtp_receiver(self, receiver, parameters: RTCRtpReceiveParameters):
-        ssrcs = set()
-        for encoding in parameters.encodings:
-            ssrcs.add(encoding.ssrc)
-
-        self._rtp_header_extensions_map.configure(parameters)
-        self._rtp_router.register_receiver(
-            receiver,
-            ssrcs=list(ssrcs),
-            payload_types=[codec.payloadType for codec in parameters.codecs],
-            mid=parameters.muxId)
-
-    def _register_rtp_sender(self, sender, parameters: RTCRtpSendParameters):
-        self._rtp_header_extensions_map.configure(parameters)
-        self._rtp_router.register_sender(sender, ssrc=sender._ssrc)
+    # def _register_rtp_receiver(self, receiver, parameters: RTCRtpReceiveParameters):
+    #     ssrcs = set()
+    #     for encoding in parameters.encodings:
+    #         ssrcs.add(encoding.ssrc)
+    # 
+    #     self._rtp_header_extensions_map.configure(parameters)
+    #     self._rtp_router.register_receiver(
+    #         receiver,
+    #         ssrcs=list(ssrcs),
+    #         payload_types=[codec.payloadType for codec in parameters.codecs],
+    #         mid=parameters.muxId)
+    #
+    # def _register_rtp_sender(self, sender, parameters: RTCRtpSendParameters):
+    #     self._rtp_header_extensions_map.configure(parameters)
+    #     self._rtp_router.register_sender(sender, ssrc=sender._ssrc)
 
     async def _send_data(self, data):
         if self._state != State.CONNECTED:

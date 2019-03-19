@@ -2,8 +2,10 @@
 *.pyc
 .coverage
 .eggs
-.idea
 .vscode
+__cache__
+*.so
+*.bin
 /aiortc/codecs/_opus.*
 /aiortc/codecs/_vpx.*
 /build

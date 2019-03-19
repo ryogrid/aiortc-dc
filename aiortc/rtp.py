@@ -4,7 +4,7 @@ from typing import List, Tuple
 
 import attr
 
-from .rtcrtpparameters import RTCRtpParameters
+#from .rtcrtpparameters import RTCRtpParameters
 
 # reserved to avoid confusion with RTCP
 FORBIDDEN_PAYLOAD_TYPES = range(72, 77)
@@ -43,84 +43,84 @@ class HeaderExtensions:
 
 
 class HeaderExtensionsMap:
-    def __init__(self):
-        self.__ids = HeaderExtensions()
-
-    def configure(self, parameters: RTCRtpParameters):
-        for ext in parameters.headerExtensions:
-            if ext.uri == 'urn:ietf:params:rtp-hdrext:sdes:mid':
-                self.__ids.mid = ext.id
-            elif ext.uri == 'urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id':
-                self.__ids.repaired_rtp_stream_id = ext.id
-            elif ext.uri == 'urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id':
-                self.__ids.rtp_stream_id = ext.id
-            elif ext.uri == 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time':
-                self.__ids.abs_send_time = ext.id
-            elif ext.uri == 'urn:ietf:params:rtp-hdrext:toffset':
-                self.__ids.transmission_offset = ext.id
-            elif ext.uri == 'urn:ietf:params:rtp-hdrext:ssrc-audio-level':
-                self.__ids.audio_level = ext.id
-            elif ext.uri == 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01':  # noqa
-                self.__ids.transport_sequence_number = ext.id
-
-    def get(self, extension_profile: int, extension_value: bytes) -> HeaderExtensions:
-        values = HeaderExtensions()
-        for x_id, x_value in unpack_header_extensions(extension_profile, extension_value):
-            if x_id == self.__ids.mid:
-                values.mid = x_value.decode('utf8')
-            elif x_id == self.__ids.repaired_rtp_stream_id:
-                values.repaired_rtp_stream_id = x_value.decode('ascii')
-            elif x_id == self.__ids.rtp_stream_id:
-                values.rtp_stream_id = x_value.decode('ascii')
-            elif x_id == self.__ids.abs_send_time:
-                values.abs_send_time = unpack('!L', b'\00' + x_value)[0]
-            elif x_id == self.__ids.transmission_offset:
-                values.transmission_offset = unpack('!l', x_value + b'\00')[0] >> 8
-            elif x_id == self.__ids.audio_level:
-                vad_level = unpack('!B', x_value)[0]
-                values.audio_level = (vad_level & 0x80 == 0x80, vad_level & 0x7f)
-            elif x_id == self.__ids.transport_sequence_number:
-                values.transport_sequence_number = unpack('!H', x_value)[0]
-        return values
-
-    def set(self, values: HeaderExtensions):
-        extensions = []
-        if values.mid is not None and self.__ids.mid:
-            extensions.append((
-                self.__ids.mid,
-                values.mid.encode('utf8')
-            ))
-        if values.repaired_rtp_stream_id is not None and self.__ids.repaired_rtp_stream_id:
-            extensions.append((
-                self.__ids.repaired_rtp_stream_id,
-                values.repaired_rtp_stream_id.encode('ascii')
-            ))
-        if values.rtp_stream_id is not None and self.__ids.rtp_stream_id:
-            extensions.append((
-                self.__ids.rtp_stream_id,
-                values.rtp_stream_id.encode('ascii')
-            ))
-        if values.abs_send_time is not None and self.__ids.abs_send_time:
-            extensions.append((
-                self.__ids.abs_send_time,
-                pack('!L', values.abs_send_time)[1:]
-            ))
-        if values.transmission_offset is not None and self.__ids.transmission_offset:
-            extensions.append((
-                self.__ids.transmission_offset,
-                pack('!l', values.transmission_offset << 8)[0:2]
-            ))
-        if values.audio_level is not None and self.__ids.audio_level:
-            extensions.append((
-                self.__ids.audio_level,
-                pack('!B', (0x80 if values.audio_level[0] else 0) | (values.audio_level[1] & 0x7f))
-            ))
-        if values.transport_sequence_number is not None and self.__ids.transport_sequence_number:
-            extensions.append((
-                self.__ids.transport_sequence_number,
-                pack('!H', values.transport_sequence_number)
-            ))
-        return pack_header_extensions(extensions)
+     def __init__(self):
+         self.__ids = HeaderExtensions()
+#
+#     def configure(self, parameters: RTCRtpParameters):
+#         for ext in parameters.headerExtensions:
+#             if ext.uri == 'urn:ietf:params:rtp-hdrext:sdes:mid':
+#                 self.__ids.mid = ext.id
+#             elif ext.uri == 'urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id':
+#                 self.__ids.repaired_rtp_stream_id = ext.id
+#             elif ext.uri == 'urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id':
+#                 self.__ids.rtp_stream_id = ext.id
+#             elif ext.uri == 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time':
+#                 self.__ids.abs_send_time = ext.id
+#             elif ext.uri == 'urn:ietf:params:rtp-hdrext:toffset':
+#                 self.__ids.transmission_offset = ext.id
+#             elif ext.uri == 'urn:ietf:params:rtp-hdrext:ssrc-audio-level':
+#                 self.__ids.audio_level = ext.id
+#             elif ext.uri == 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01':  # noqa
+#                 self.__ids.transport_sequence_number = ext.id
+#
+#     def get(self, extension_profile: int, extension_value: bytes) -> HeaderExtensions:
+#         values = HeaderExtensions()
+#         for x_id, x_value in unpack_header_extensions(extension_profile, extension_value):
+#             if x_id == self.__ids.mid:
+#                 values.mid = x_value.decode('utf8')
+#             elif x_id == self.__ids.repaired_rtp_stream_id:
+#                 values.repaired_rtp_stream_id = x_value.decode('ascii')
+#             elif x_id == self.__ids.rtp_stream_id:
+#                 values.rtp_stream_id = x_value.decode('ascii')
+#             elif x_id == self.__ids.abs_send_time:
+#                 values.abs_send_time = unpack('!L', b'\00' + x_value)[0]
+#             elif x_id == self.__ids.transmission_offset:
+#                 values.transmission_offset = unpack('!l', x_value + b'\00')[0] >> 8
+#             elif x_id == self.__ids.audio_level:
+#                 vad_level = unpack('!B', x_value)[0]
+#                 values.audio_level = (vad_level & 0x80 == 0x80, vad_level & 0x7f)
+#             elif x_id == self.__ids.transport_sequence_number:
+#                 values.transport_sequence_number = unpack('!H', x_value)[0]
+#         return values
+#
+#     def set(self, values: HeaderExtensions):
+#         extensions = []
+#         if values.mid is not None and self.__ids.mid:
+#             extensions.append((
+#                 self.__ids.mid,
+#                 values.mid.encode('utf8')
+#             ))
+#         if values.repaired_rtp_stream_id is not None and self.__ids.repaired_rtp_stream_id:
+#             extensions.append((
+#                 self.__ids.repaired_rtp_stream_id,
+#                 values.repaired_rtp_stream_id.encode('ascii')
+#             ))
+#         if values.rtp_stream_id is not None and self.__ids.rtp_stream_id:
+#             extensions.append((
+#                 self.__ids.rtp_stream_id,
+#                 values.rtp_stream_id.encode('ascii')
+#             ))
+#         if values.abs_send_time is not None and self.__ids.abs_send_time:
+#             extensions.append((
+#                 self.__ids.abs_send_time,
+#                 pack('!L', values.abs_send_time)[1:]
+#             ))
+#         if values.transmission_offset is not None and self.__ids.transmission_offset:
+#             extensions.append((
+#                 self.__ids.transmission_offset,
+#                 pack('!l', values.transmission_offset << 8)[0:2]
+#             ))
+#         if values.audio_level is not None and self.__ids.audio_level:
+#             extensions.append((
+#                 self.__ids.audio_level,
+#                 pack('!B', (0x80 if values.audio_level[0] else 0) | (values.audio_level[1] & 0x7f))
+#             ))
+#         if values.transport_sequence_number is not None and self.__ids.transport_sequence_number:
+#             extensions.append((
+#                 self.__ids.transport_sequence_number,
+#                 pack('!H', values.transport_sequence_number)
+#             ))
+#         return pack_header_extensions(extensions)
 
 
 def clamp_packets_lost(count):
@@ -626,76 +626,76 @@ class RtpPacket:
         return 'RtpPacket(seq=%d, ts=%s, marker=%d, payload=%d, %d bytes)' % (
             self.sequence_number, self.timestamp, self.marker, self.payload_type, len(self.payload))
 
-    @classmethod
-    def parse(cls, data, extensions_map=HeaderExtensionsMap()):
-        if len(data) < RTP_HEADER_LENGTH:
-            raise ValueError('RTP packet length is less than %d bytes' % RTP_HEADER_LENGTH)
+    # @classmethod
+    # def parse(cls, data, extensions_map=HeaderExtensionsMap()):
+    #     if len(data) < RTP_HEADER_LENGTH:
+    #         raise ValueError('RTP packet length is less than %d bytes' % RTP_HEADER_LENGTH)
+    #
+    #     v_p_x_cc, m_pt, sequence_number, timestamp, ssrc = unpack('!BBHLL', data[0:12])
+    #     version = (v_p_x_cc >> 6)
+    #     padding = ((v_p_x_cc >> 5) & 1)
+    #     extension = ((v_p_x_cc >> 4) & 1)
+    #     cc = (v_p_x_cc & 0x0f)
+    #     if version != 2:
+    #         raise ValueError('RTP packet has invalid version')
+    #     if len(data) < RTP_HEADER_LENGTH + 4 * cc:
+    #         raise ValueError('RTP packet has truncated CSRC')
+    #
+    #     packet = cls(
+    #         marker=(m_pt >> 7),
+    #         payload_type=(m_pt & 0x7f),
+    #         sequence_number=sequence_number,
+    #         timestamp=timestamp,
+    #         ssrc=ssrc)
+    #
+    #     pos = RTP_HEADER_LENGTH
+    #     for i in range(0, cc):
+    #         packet.csrc.append(unpack_from('!L', data, pos)[0])
+    #         pos += 4
+    #
+    #     if extension:
+    #         if len(data) < pos + 4:
+    #             raise ValueError('RTP packet has truncated extension profile / length')
+    #         extension_profile, extension_length = unpack_from('!HH', data, pos)
+    #         extension_length *= 4
+    #         pos += 4
+    #
+    #         if len(data) < pos + extension_length:
+    #             raise ValueError('RTP packet has truncated extension value')
+    #         extension_value = data[pos:pos + extension_length]
+    #         pos += extension_length
+    #         packet.extensions = extensions_map.get(extension_profile, extension_value)
+    #
+    #     if padding:
+    #         padding_len = data[-1]
+    #         if not padding_len or padding_len > len(data) - pos:
+    #             raise ValueError('RTP packet padding length is invalid')
+    #         packet.padding_size = padding_len
+    #         packet.payload = data[pos:-padding_len]
+    #     else:
+    #         packet.payload = data[pos:]
+    #
+    #     return packet
 
-        v_p_x_cc, m_pt, sequence_number, timestamp, ssrc = unpack('!BBHLL', data[0:12])
-        version = (v_p_x_cc >> 6)
-        padding = ((v_p_x_cc >> 5) & 1)
-        extension = ((v_p_x_cc >> 4) & 1)
-        cc = (v_p_x_cc & 0x0f)
-        if version != 2:
-            raise ValueError('RTP packet has invalid version')
-        if len(data) < RTP_HEADER_LENGTH + 4 * cc:
-            raise ValueError('RTP packet has truncated CSRC')
-
-        packet = cls(
-            marker=(m_pt >> 7),
-            payload_type=(m_pt & 0x7f),
-            sequence_number=sequence_number,
-            timestamp=timestamp,
-            ssrc=ssrc)
-
-        pos = RTP_HEADER_LENGTH
-        for i in range(0, cc):
-            packet.csrc.append(unpack_from('!L', data, pos)[0])
-            pos += 4
-
-        if extension:
-            if len(data) < pos + 4:
-                raise ValueError('RTP packet has truncated extension profile / length')
-            extension_profile, extension_length = unpack_from('!HH', data, pos)
-            extension_length *= 4
-            pos += 4
-
-            if len(data) < pos + extension_length:
-                raise ValueError('RTP packet has truncated extension value')
-            extension_value = data[pos:pos + extension_length]
-            pos += extension_length
-            packet.extensions = extensions_map.get(extension_profile, extension_value)
-
-        if padding:
-            padding_len = data[-1]
-            if not padding_len or padding_len > len(data) - pos:
-                raise ValueError('RTP packet padding length is invalid')
-            packet.padding_size = padding_len
-            packet.payload = data[pos:-padding_len]
-        else:
-            packet.payload = data[pos:]
-
-        return packet
-
-    def serialize(self, extensions_map=HeaderExtensionsMap()):
-        extension_profile, extension_value = extensions_map.set(self.extensions)
-        has_extension = bool(extension_value)
-
-        padding = self.padding_size > 0
-        data = pack(
-            '!BBHLL',
-            (self.version << 6) | (padding << 5) | (has_extension << 4) | len(self.csrc),
-            (self.marker << 7) | self.payload_type,
-            self.sequence_number,
-            self.timestamp,
-            self.ssrc)
-        for csrc in self.csrc:
-            data += pack('!L', csrc)
-        if has_extension:
-            data += pack('!HH', extension_profile, len(extension_value) >> 2)
-            data += extension_value
-        data += self.payload
-        if padding:
-            data += os.urandom(self.padding_size - 1)
-            data += bytes([self.padding_size])
-        return data
+    # def serialize(self, extensions_map=HeaderExtensionsMap()):
+    #     extension_profile, extension_value = extensions_map.set(self.extensions)
+    #     has_extension = bool(extension_value)
+    #
+    #     padding = self.padding_size > 0
+    #     data = pack(
+    #         '!BBHLL',
+    #         (self.version << 6) | (padding << 5) | (has_extension << 4) | len(self.csrc),
+    #         (self.marker << 7) | self.payload_type,
+    #         self.sequence_number,
+    #         self.timestamp,
+    #         self.ssrc)
+    #     for csrc in self.csrc:
+    #         data += pack('!L', csrc)
+    #     if has_extension:
+    #         data += pack('!HH', extension_profile, len(extension_value) >> 2)
+    #         data += extension_value
+    #     data += self.payload
+    #     if padding:
+    #         data += os.urandom(self.padding_size - 1)
+    #         data += bytes([self.padding_size])
+    #     return data

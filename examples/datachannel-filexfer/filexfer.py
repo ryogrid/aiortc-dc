@@ -2,22 +2,24 @@ import argparse
 import asyncio
 import logging
 import time
+import sys
 
-import uvloop
+from os import path
+
+sys.path.append(path.dirname(path.abspath(__file__)) + "/../../")
+#import uvloop
 
 from aiortc import RTCPeerConnection, RTCSessionDescription
 from aiortc.contrib.signaling import add_signaling_arguments, create_signaling
 
-
 async def consume_signaling(pc, signaling):
     while True:
         obj = await signaling.receive()
-
         if isinstance(obj, RTCSessionDescription):
+            print("recv remote sdp")
             await pc.setRemoteDescription(obj)
-
-            if obj.type == 'offer':
-                # send answer
+            if obj.type == 'offer': # run on receiver
+                print("send local sdp (answer)")
                 await pc.setLocalDescription(await pc.createAnswer())
                 await signaling.send(pc.localDescription)
         else:
@@ -71,6 +73,7 @@ async def run_offer(pc, signaling, fp):
 
     # send offer
     await pc.setLocalDescription(await pc.createOffer())
+    print("send local sdp (offer)")
     await signaling.send(pc.localDescription)
 
     await consume_signaling(pc, signaling)
@@ -87,7 +90,7 @@ if __name__ == '__main__':
     if args.verbose:
         logging.basicConfig(level=logging.DEBUG)
 
-    asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+    #asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
     signaling = create_signaling(args)
     pc = RTCPeerConnection()
     if args.role == 'send':
@@ -99,6 +102,8 @@ if __name__ == '__main__':
 
     # run event loop
     loop = asyncio.get_event_loop()
+
+    asyncio.set_event_loop(loop)
     try:
         loop.run_until_complete(coro)
     except KeyboardInterrupt:
