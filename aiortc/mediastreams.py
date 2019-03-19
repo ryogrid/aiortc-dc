@@ -3,7 +3,7 @@ import fractions
 import time
 import uuid
 
-from av import AudioFrame, VideoFrame
+#from av import AudioFrame, VideoFrame
 from pyee import EventEmitter
 
 AUDIO_PTIME = 0.020  # 20ms audio packetization

@@ -6,8 +6,8 @@ from collections import OrderedDict
 from pyee import EventEmitter
 
 from . import clock, rtp, sdp
-from .codecs import CODECS, HEADER_EXTENSIONS, is_rtx
-from .events import RTCTrackEvent
+#from .codecs import CODECS, HEADER_EXTENSIONS, is_rtx
+#from .events import RTCTrackEvent
 from .exceptions import InternalError, InvalidAccessError, InvalidStateError
 from .rtcconfiguration import RTCConfiguration
 from .rtcdatachannel import RTCDataChannel, RTCDataChannelParameters
@@ -441,7 +441,7 @@ class RTCPeerConnection(EventEmitter):
         return wrap_session_description(description)
 
     def createDataChannel(self, label, maxPacketLifeTime=None, maxRetransmits=None,
-                          ordered=True, protocol='', negotiated=False, id=None):
+                          ordered=True, protocol=''):
         """
         Create a data channel with the given label.
 
@@ -454,11 +454,9 @@ class RTCPeerConnection(EventEmitter):
             self.__createSctpTransport()
 
         parameters = RTCDataChannelParameters(
-            id=id,
             label=label,
             maxPacketLifeTime=maxPacketLifeTime,
             maxRetransmits=maxRetransmits,
-            negotiated=negotiated,
             ordered=ordered,
             protocol=protocol)
         return RTCDataChannel(self.__sctp, parameters)

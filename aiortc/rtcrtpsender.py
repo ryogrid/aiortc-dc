@@ -5,7 +5,7 @@ import time
 import uuid
 
 from . import clock, rtp
-from .codecs import get_capabilities, get_encoder, is_rtx
+#from .codecs import get_capabilities, get_encoder, is_rtx
 from .exceptions import InvalidStateError
 from .mediastreams import MediaStreamError
 from .rtcrtpparameters import RTCRtpSendParameters

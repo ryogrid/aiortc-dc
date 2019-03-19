@@ -9,7 +9,7 @@ import time
 import attr
 
 from . import clock
-from .codecs import depayload, get_capabilities, get_decoder, is_rtx
+#from .codecs import depayload, get_capabilities, get_decoder, is_rtx
 from .exceptions import InvalidStateError
 from .jitterbuffer import JitterBuffer
 from .mediastreams import MediaStreamError, MediaStreamTrack
