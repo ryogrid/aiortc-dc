@@ -50,7 +50,7 @@ setuptools.setup(
         'Programming Language :: Python :: 3.7',
     ],
     cffi_modules=cffi_modules,
-    packages=['aiortc', 'aiortc.codecs', 'aiortc.contrib'],
+    packages=['aiortc', 'aiortc.contrib'],
     setup_requires=['cffi>=1.0.0'],
     install_requires=install_requires,
 )
