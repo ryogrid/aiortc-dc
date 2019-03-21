@@ -20,13 +20,15 @@ OS: Windows (tested only on win10 64bit), Linux (tested only Ubuntu Linux sid), 
 
 Python: greater than 3.5 
 
-Installation
+Setup depend packages
 -------------------
 
 ``Important``: punch_sctp is under development. so package installation path isolation is recommended (ex: use virtualenv) 
 there are two way
+
 - use setup.py
 $ python setup.py install
+
 - use pip
 $ pip install git+https://github.com/ryogrid/punch_sctp
 
