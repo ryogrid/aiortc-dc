@@ -26,8 +26,7 @@ Python: greater than 3.5
 Setup depend packages
 -------------------
 
-``Important``:
-
+- ``Important``:
 punch_sctp is under development. So package installation path isolation is recommended (ex: use virtualenv) 
 
 There are two way
