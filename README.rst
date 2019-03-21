@@ -26,11 +26,13 @@ Python: greater than 3.5
 Setup depend packages
 -------------------
 
-``Important``: punch_sctp is under development.
+``Important``:
 
-so package installation path isolation is recommended (ex: use virtualenv) 
+punch_sctp is under development.  
 
-there are two way
+So package installation path isolation is recommended (ex: use virtualenv) 
+
+There are two way
 
 - use setup.py
 
