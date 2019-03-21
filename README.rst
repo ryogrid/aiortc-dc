@@ -28,9 +28,7 @@ Setup depend packages
 
 ``Important``:
 
-punch_sctp is under development.  
-
-So package installation path isolation is recommended (ex: use virtualenv) 
+punch_sctp is under development. So package installation path isolation is recommended (ex: use virtualenv) 
 
 There are two way
 
