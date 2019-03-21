@@ -14,6 +14,26 @@ Acknowledgement
 This library is fork of aiortc (https://github.com/aiortc/aiortc) and most codes are wrote on aiortc project.
 I am deeply grateful to contoributers of aiortc who maked very very nice product.
 
+Requirement
+-------------------
+OS: Windows (tested only on win10 64bit), Linux (tested only Ubuntu Linux sid), MacOS (tested only Mojave)
+
+Python: greater than 3.5 
+
+Installation
+-------------------
+
+``Important``: punch_sctp is under development. so package installation path isolation is recommended (ex: use virtualenv) 
+there are two way
+- use setup.py
+$ python setup.py install
+- use pip
+$ pip install git+https://github.com/ryogrid/punch_sctp
+
+Now, sample program refefences code tree directly.
+
+So, when trying execution, you should do it on cloned local repository.
+
 License
 -------
 
