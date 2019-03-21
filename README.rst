@@ -27,10 +27,12 @@ Setup depend packages
 there are two way
 
 - use setup.py
-$ python setup.py install
+
+  - $ python setup.py install
 
 - use pip
-$ pip install git+https://github.com/ryogrid/punch_sctp
+
+  - $ pip install git+https://github.com/ryogrid/punch_sctp
 
 Now, sample program refefences code tree directly.
 
