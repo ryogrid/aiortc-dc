@@ -29,16 +29,16 @@ install_requires = [
 #    install_requires = list(filter(lambda x: x != 'av', install_requires))
 
 setuptools.setup(
-    name='aiortc',
-    version='0.9.20',
-    description='An implementation of WebRTC and ORTC',
+    name='punch_sctp',
+    version='0.1.0',
+    description='library for sctp data transfer on direct p2p transport',
     long_description=long_description,
-    url='https://github.com/aiortc/aiortc',
-    author='Jeremy Lainé',
-    author_email='jeremy.laine@m4x.org',
+    url='https://github.com/ryogrid/punch_sctp',
+    author='Ryo Kanbayashi',
+    author_email='ryo.contact@gmail.com',
     license='BSD',
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
+        'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
