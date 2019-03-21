@@ -1,14 +1,16 @@
 Data channel file transfer
 ==========================
 
+- ``Important``:
+
+  - Copy and paste signaling example is not worked on Windows python environment due to restricton of asyncio.
+
+  - To try file transfer example on windows environment, please see `README of websocket signaling version`_.
+
 This example illustrates sending a file over a data channel using an
 RTCPeerConnection and a "copy and paste" signaling channel to exchange SDP.
 
-First install the required packages:
-
-.. code-block:: console
-
-    $ pip install aiortc uvloop
+..  _README of websocket signaling version: https://github.com/ryogrid/punch_sctp/blob/master/examples/datachannel-filexfer/README_WS_SIGNALING_VERSION.rst
 
 To run the example, you will need instances of the `filexfer` example:
 
@@ -17,11 +19,11 @@ To run the example, you will need instances of the `filexfer` example:
 
 .. code-block:: console
 
-   $ python cli.py send somefile.pdf
+   $ python filexfer.py send somefile.pdf
 
 - The second takes on the role of the answerer. When given an offer, it will
   generate an answer which you must copy-and-paste to the offerer.
 
 .. code-block:: console
 
-   $ python cli.py receive received.pdf
+   $ python filexfer.py receive received.pdf
