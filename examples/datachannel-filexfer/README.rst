@@ -12,6 +12,13 @@ RTCPeerConnection and a "copy and paste" signaling channel to exchange SDP.
 
 ..  _README of websocket signaling version: https://github.com/ryogrid/punch_sctp/blob/master/examples/datachannel-filexfer/README_WS_SIGNALING_VERSION.rst
 
+
+First install the required packages:
+
+.. code-block:: console
+
+    $ pip install aiortc uvloop
+    
 To run the example, you will need instances of the `filexfer` example:
 
 - The first takes on the role of the offerer. It generates an offer which you
