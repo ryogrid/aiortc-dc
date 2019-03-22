@@ -13,7 +13,7 @@ So you need a STUN server (Google offers for testing now and you can use it) and
 Acknowledgement
 -------------------
 
-This library is fork of aiortc (https://github.com/aiortc/aiortc) and most codes are wrote on aiortc project.
+This library is a fork of aiortc (https://github.com/aiortc/aiortc) and most codes are wrote on aiortc project.
 
 I am deeply grateful to contoributers of aiortc who maked very very nice product.
 
