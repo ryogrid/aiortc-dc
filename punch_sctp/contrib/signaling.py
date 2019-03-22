@@ -4,8 +4,8 @@ import os
 import sys
 import websockets
 
-from aiortc import RTCIceCandidate, RTCSessionDescription
-from aiortc.sdp import candidate_from_sdp, candidate_to_sdp
+from punch_sctp import RTCIceCandidate, RTCSessionDescription
+from punch_sctp.sdp import candidate_from_sdp, candidate_to_sdp
 
 
 def object_from_string(message_str):
@@ -216,7 +216,7 @@ def add_signaling_arguments(parser):
                         help='Signaling host (tcp-socket and websocket only)')
     parser.add_argument('--signaling-port', default=1234,
                         help='Signaling port (tcp-socket and websocket only)')
-    parser.add_argument('--signaling-path', default='aiortc.socket',
+    parser.add_argument('--signaling-path', default='punch_sctp.socket',
                         help='Signaling socket path (unix-socket only)')
 
 

@@ -9,8 +9,8 @@ from os import path
 sys.path.append(path.dirname(path.abspath(__file__)) + "/../../")
 #import uvloop
 
-from aiortc import RTCPeerConnection, RTCSessionDescription
-from aiortc.contrib.signaling import add_signaling_arguments, create_signaling
+from punch_sctp import RTCPeerConnection, RTCSessionDescription
+from punch_sctp.contrib.signaling import add_signaling_arguments, create_signaling
 
 async def consume_signaling(pc, signaling):
     while True:
