@@ -7,15 +7,9 @@ readme_file = os.path.join(root_dir, 'README.rst')
 with open(readme_file, encoding='utf-8') as f:
     long_description = f.read()
 
-cffi_modules = []
-#    'src/build_opus.py:ffibuilder',
-#    'src/build_vpx.py:ffibuilder',
-#]
 install_requires = [
     'aioice>=0.6.13,<0.7.0',
     'attrs',
-#    'av>=6.1.0,<7.0.0',
-    'cffi>=1.0.0',
     'crc32c',
     'cryptography>=2.2',
     'pyee',
@@ -23,10 +17,6 @@ install_requires = [
     'pyopenssl',
     'websockets>=7.0'
 ]
-
-#if os.environ.get('READTHEDOCS') == 'True':
-#    cffi_modules = []
-#    install_requires = list(filter(lambda x: x != 'av', install_requires))
 
 setuptools.setup(
     name='punch_sctp',
@@ -49,8 +39,7 @@ setuptools.setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
     ],
-    cffi_modules=cffi_modules,
     packages=['punch_sctp', 'punch_sctp.contrib'],
-    setup_requires=['cffi>=1.0.0'],
+    setup_requires=[],
     install_requires=install_requires,
 )
