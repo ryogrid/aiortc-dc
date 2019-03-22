@@ -4,10 +4,8 @@ import logging
 import time
 import sys
 
-from os import path
-
-sys.path.append(path.dirname(path.abspath(__file__)) + "/../../")
-#import uvloop
+#from os import path
+#sys.path.append(path.dirname(path.abspath(__file__)) + "/../../")
 
 from punch_sctp import RTCPeerConnection, RTCSessionDescription
 from punch_sctp.contrib.signaling import add_signaling_arguments, create_signaling
