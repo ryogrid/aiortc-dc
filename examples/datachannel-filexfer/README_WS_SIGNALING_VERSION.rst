@@ -51,4 +51,5 @@ Please visit `this repo`_ and press 'Deploy to Heroku' button!
 
 ``Deployed server is accessible``: --signaling-host <your-appname>.herokuapp.com --signaling-port 80
 
-..  _this repo: https://github.com/ryogrid/punch_sctp/blob/master/examples/datachannel-filexfer/README_WS_SIGNALING_VERSION.rst
+..  _this repo: https://github.com/ryogrid/punch_sctp_ws_signal_srv_for_sample
+
