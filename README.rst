@@ -42,7 +42,7 @@ There are two way
 
 Now, sample program refefences code tree directly.
 
-So, when trying execution, you should do it on cloned local repository aside from Websocket signaling server(it only needs 'websockets' pip package).
+So, when trying execution, you should do it on cloned local repository aside from Websocket signaling server (it only needs 'websockets' pip package).
 
 License
 -------
