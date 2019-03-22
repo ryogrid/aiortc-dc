@@ -4,6 +4,8 @@ Important point
 - this version works with python on Windows environment! (tested only Windows10 64bit)
 - uvloop pip package is not needed (the package does not support Windows platform)
 
+
+
 =====
 Run using websocket signaling server version example on a host
 =====
@@ -36,6 +38,7 @@ Host-B (Receiver)
 .. code-block:: console
 
  $ python filexfer.py --signaling websocket --signaling-host 127.0.0.1 --signaling-port 8765 receive <local filepath to save>
+
 
 
 =====
