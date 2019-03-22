@@ -1,4 +1,10 @@
 =====
+Important point
+=====
+- this version works with python on Windows environment! (tested only Windows10 64bit)
+- uvloop pip package is not needed (the package does not support Windows platform)
+
+=====
 Run using websocket signaling server version example on a host
 =====
 
@@ -31,8 +37,14 @@ Host-B (Receiver)
 
  $ python filexfer.py --signaling websocket --signaling-host 127.0.0.1 --signaling-port 8765 receive <local filepath to save>
 
+
 =====
-Important point
+Run this example between two hosts on different networks which has NAT
 =====
-- this version works with python on Windows environment! (tested only Windows10 64bit)
-- uvloop pip package is not needed (the package does not support Windows platform)
+
+You can place personal signaling server on the internet with heroku!
+
+Please visit `this repo`_ and press 'Deploy to Heroku' button!
+
+``Deployed server is accessible``: --signaling-host <your-appname>.herokuapp.com --signaling-port 80
+
