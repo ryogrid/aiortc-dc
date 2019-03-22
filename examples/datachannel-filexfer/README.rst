@@ -3,7 +3,7 @@ Data channel file transfer
 
 - ``Important``:
 
-  - Copy and paste signaling example is not worked on Windows python environment due to restricton of asyncio.
+  - Copy and paste signaling example can not work on Windows python environment due to restricton of asyncio.
 
   - To try file transfer example on windows environment, please see `README of websocket signaling version`_.
 
