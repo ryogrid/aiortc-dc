@@ -1,3 +1,35 @@
+this repo is special version of aiortc which can be install data channel feature only and it works on windows palatrom.
+
+PRs is already requested. So this is tempolary repository.
+
+Install procedure
+======
+Because, switch dependent packages from pip.  
+I add a special version of setup.py (setup_dc.py)  
+I suppose procedure like below.  
+  
+  
+- $ git clone https://github.com/aiortc/aiortc.git --depth 1  
+- $ cd aiortc  
+- $ python setup_dc.py install  
+  
+ Attention
+ ======
+- Due to same package name, data channel only version of aiortc can't coexist with normal version of it.
+- If user want coexistance, user should use tool like virtualenv.
+
+ 
+Additional codes to switch data channel feature only mode
+======
+User should insert this codes on top of his or her startup script.
+
+
+- import os  
+- os.environ['AIORTC_SPECIAL_MODE'] = 'DC_ONLY'
+
+
+---
+
 aiortc
 ======
 
