@@ -14,8 +14,7 @@ install_requires = [
     'cryptography>=2.2',
     'pyee',
     'pylibsrtp>=0.5.6',
-    'pyopenssl',
-    'websockets>=7.0'
+    'pyopenssl'
 ]
 
 setuptools.setup(
