@@ -1,5 +1,2 @@
 include LICENSE
-recursive-include docs *.py *.rst Makefile
 recursive-include examples *.html *.py *.rst *.wav
-recursive-include src *.py
-recursive-include tests *.bin *.py
