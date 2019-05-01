@@ -20,7 +20,7 @@ install_requires = [
 
 setuptools.setup(
     name='aiortc-dc',
-    version='0.5.2',
+    version='0.5.3',
     description='data channel feature only version of aiortc which implements WebRTC and ORTC',
     long_description=long_description,
     url='https://github.com/ryogrid/aiortc-dc',
