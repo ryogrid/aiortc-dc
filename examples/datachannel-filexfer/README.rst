@@ -10,8 +10,7 @@ Data channel file transfer
 This example illustrates sending a file over a data channel using an
 RTCPeerConnection and a "copy and paste" signaling channel to exchange SDP.
 
-..  _websocket signaling version: https://github.com/aiortc/aiortc/blob/master/examples/datachannel-filexfer/README_WS_SIGNALING_VERSION.rst
-
+..  _websocket signaling version: https://github.com/ryogrid/aiortc-dc/blob/pr-websocket-version-filexfer/examples/datachannel-filexfer/README_WS_SIGNALING_VERSION.rst
 
 First install the required packages:
 

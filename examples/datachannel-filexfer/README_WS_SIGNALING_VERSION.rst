@@ -37,6 +37,7 @@ Host-B (Receiver)
 
 .. code-block:: console
 
+
  $ python filexfer-ws-signaling.py --signaling websocket --signaling-host 127.0.0.1 --signaling-port 8765 receive <local filepath to save>
 
 
