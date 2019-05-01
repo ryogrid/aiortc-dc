@@ -1,7 +1,7 @@
 import logging
 
-from aiortc.codecs import get_capabilities
-from aiortc.sdp import DIRECTIONS
+from aiortcdc.codecs import get_capabilities
+from aiortcdc.sdp import DIRECTIONS
 
 logger = logging.getLogger('rtp')
 

@@ -54,7 +54,7 @@ class MediaBlackhole:
         """
         Add a track whose media should be discarded.
 
-        :param: track: An :class:`aiortc.AudioStreamTrack` or :class:`aiortc.VideoStreamTrack`.
+        :param: track: An :class:`aiortcdc.AudioStreamTrack` or :class:`aiortcdc.VideoStreamTrack`.
         """
         if track not in self.__tracks:
             self.__tracks[track] = None
@@ -236,14 +236,14 @@ class MediaPlayer:
     @property
     def audio(self):
         """
-        An :class:`aiortc.AudioStreamTrack` instance if the file contains audio.
+        An :class:`aiortcdc.AudioStreamTrack` instance if the file contains audio.
         """
         return self.__audio
 
     @property
     def video(self):
         """
-        A :class:`aiortc.VideoStreamTrack` instance if the file contains video.
+        A :class:`aiortcdc.VideoStreamTrack` instance if the file contains video.
         """
         return self.__video
 
@@ -307,7 +307,7 @@ class MediaRecorder:
         """
         Add a track to be recorded.
 
-        :param: track: An :class:`aiortc.AudioStreamTrack` or :class:`aiortc.VideoStreamTrack`.
+        :param: track: An :class:`aiortcdc.AudioStreamTrack` or :class:`aiortcdc.VideoStreamTrack`.
         """
         if track.kind == 'audio':
             if self.__container.format.name == 'wav':

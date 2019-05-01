@@ -14,17 +14,18 @@ install_requires = [
     'cryptography>=2.2',
     'pyee',
     'pylibsrtp>=0.5.6',
-    'pyopenssl'
+    'pyopenssl',
+    'websockets>=7.0'
 ]
 
 setuptools.setup(
-    name='aiortc',
+    name='aiortc-dc',
     version='0.5.0',
     description='data channel feature only version of aiortc which implements WebRTC and ORTC',
     long_description=long_description,
-    url='https://github.com/aiortc/aiortc',
-    author='Jeremy Lainé',
-    author_email='jeremy.laine@m4x.org',
+    url='https://github.com/ryogrid/aiortc-dc',
+    author='Jeremy Lainé and Ryo Kanbayashi',
+    author_email='ryo.contact@gmail.com',
     license='BSD',
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -38,7 +39,7 @@ setuptools.setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
     ],
-    packages=['aiortc', 'aiortc.contrib'],
+    packages=['aiortcdc', 'aiortcdc.contrib'],
     setup_requires=[],
     install_requires=install_requires,
 )

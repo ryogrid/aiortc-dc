@@ -10,8 +10,9 @@ import os
 import attr
 
 from . import clock
-if os.getenv('AIORTC_SPECIAL_MODE') != "DC_ONLY":
-	from .codecs import depayload, get_capabilities, get_decoder, is_rtx
+
+# from .codecs import depayload, get_capabilities, get_decoder, is_rtx
+
 from .exceptions import InvalidStateError
 from .jitterbuffer import JitterBuffer
 
