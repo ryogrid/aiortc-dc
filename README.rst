@@ -4,32 +4,10 @@ PRs is already requested. So this is tempolary repository.
 
 Install procedure
 ======
-Because, switch dependent packages from pip.  
-
-I add a special version of setup.py (setup_dc.py).  
-
-procedure is like below.
-  
-  
-- $ git clone https://github.com/aiortc/aiortc-dc.git --depth 1  
-- $ cd aiortc  
-- $ python setup_dc.py install  
-  
-Attention
-======
-Due to same package name, data channel only version of aiortc can't coexist with normal version of it.  
-
-If you want coexistance, youl should use tool like virtualenv.
-
- 
-Additional codes to switch data channel feature only mode
-======
-User should insert this codes on top of his or her startup script.
 
 ::
 
-  import os
-  os.environ['AIORTC_SPECIAL_MODE'] = 'DC_ONLY'
+  pip install aiortc-dc
   
 File transfer example of P2P direct communication over NAT (which can run on Windows platform!)
 ======
