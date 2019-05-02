@@ -9,8 +9,8 @@ try:
 except ImportError:
     uvloop = None
 
-from aiortc import RTCPeerConnection, RTCSessionDescription
-from aiortc.contrib.signaling import add_signaling_arguments, create_signaling
+from aiortcdc import RTCPeerConnection, RTCSessionDescription
+from aiortcdc.contrib.signaling import add_signaling_arguments, create_signaling
 
 async def consume_signaling(pc, signaling):
     while True:
