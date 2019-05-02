@@ -1,22 +1,30 @@
 Data channel file transfer
 ==========================
 
-- ``Important``:
-
-  - Copy and paste signaling example can not work on Windows python environment due to restricton of asyncio.
-
-  - To try file transfer example on windows environment, please see `websocket signaling version`_.
-
 This example illustrates sending a file over a data channel using an
 RTCPeerConnection and a "copy and paste" signaling channel to exchange SDP.
 
-..  _websocket signaling version: https://github.com/ryogrid/aiortc-dc/blob/pr-websocket-version-filexfer/examples/datachannel-filexfer/README_WS_SIGNALING_VERSION.rst
+Currently, this "copy and paste" can't work on Windows platform due to asyncio functionality restriction.
+
+So, if you want to run file transfer example on windows platform. please try `websocket signaling`_ or `p2p tcp-socket signaling`_.
+
+..  _websocket signaling: https://github.com/ryogrid/aiortc-dc/blob/to-make-pip-package-from-master/examples/datachannel-filexfer/README_WS_SIGNALING_VERSION.rst
+
+..  _p2p tcp-socket signaling: https://github.com/aiortc/aiortc/pull/172/files#r279630394
+
+.. 
 
 First install the required packages:
 
 .. code-block:: console
 
-    $ pip install aiortc uvloop
+    $ pip install aiortc
+
+On Linux and Mac OS X you can also install uvloop for better performance:
+
+.. code-block:: console
+
+    $ pip install uvloop
 
 
 To run the example, you will need instances of the `filexfer` example:
