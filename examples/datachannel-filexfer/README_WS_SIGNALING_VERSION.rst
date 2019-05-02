@@ -30,7 +30,7 @@ Host-A (Sender)
 
 .. code-block:: console
 
- $ python filexfer-ws-signaling.py --signaling websocket --signaling-host 127.0.0.1 --signaling-port 8765 send <local filepath>
+ $ python filexfer.py --signaling websocket --signaling-host 127.0.0.1 --signaling-port 8765 send <local filepath>
 
 Host-B (Receiver)
 --------
@@ -38,7 +38,7 @@ Host-B (Receiver)
 .. code-block:: console
 
 
- $ python filexfer-ws-signaling.py --signaling websocket --signaling-host 127.0.0.1 --signaling-port 8765 receive <local filepath to save>
+ $ python filexfer.py --signaling websocket --signaling-host 127.0.0.1 --signaling-port 8765 receive <local filepath to save>
 
 
 
@@ -52,5 +52,5 @@ Please visit `this repo`_ and press 'Deploy to Heroku' button!
 
 ``Deployed server is accessible``: --signaling-host <your-appname>.herokuapp.com --signaling-port 80
 
-..  _this repo: https://github.com/ryogrid/punch_sctp_ws_signal_srv_for_sample
+..  _this repo: https://github.com/ryogrid/aiortc_ws_signal_srv_for_sample
 
