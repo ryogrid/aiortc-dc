@@ -30,9 +30,11 @@ async def consume_signaling(pc, signaling):
                 # send answer
                 await pc.setLocalDescription(await pc.createAnswer())
                 await signaling.send(pc.localDescription)
-        if isinstance(obj, str):
+        elif isinstance(obj, str):
             print("string recievd: " + obj)
         else:
+#            print(type(obj))
+#            print(str(obj))
             print('Exiting')
             break
 
