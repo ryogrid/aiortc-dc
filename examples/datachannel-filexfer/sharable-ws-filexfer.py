@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import argparse
 import asyncio
 import logging
@@ -8,6 +10,11 @@ try:
     import uvloop
 except ImportError:
     uvloop = None
+
+import sys
+import os
+from os import path
+sys.path.append(path.dirname(path.abspath(__file__)) + "/../../")
 
 from aiortcdc import RTCPeerConnection, RTCSessionDescription
 from aiortcdc.contrib.signaling import add_signaling_arguments, create_signaling
@@ -23,6 +30,8 @@ async def consume_signaling(pc, signaling):
                 # send answer
                 await pc.setLocalDescription(await pc.createAnswer())
                 await signaling.send(pc.localDescription)
+        if isinstance(obj, str):
+            print("string recievd: " + obj)
         else:
             print('Exiting')
             break
@@ -51,11 +60,13 @@ async def run_answer(pc, signaling, filename):
                 # say goodbye
                 await signaling.send(None)
 
+    await signaling.send("join")
     await consume_signaling(pc, signaling)
 
 
 async def run_offer(pc, signaling, fp):
     await signaling.connect()
+    await signaling.send("join")
 
     done_reading = False
     channel = pc.createDataChannel('filexfer')
