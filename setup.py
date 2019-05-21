@@ -15,7 +15,8 @@ install_requires = [
     'pyee',
     'pylibsrtp>=0.5.6',
     'pyopenssl',
-    'websockets>=7.0'
+    'websockets>=7.0',
+    'gevent-websocket>=0.10.1'
 ]
 
 setuptools.setup(
