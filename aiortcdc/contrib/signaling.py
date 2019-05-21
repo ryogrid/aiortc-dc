@@ -3,13 +3,20 @@ import json
 import os
 import sys
 import websockets
+import traceback
 
 from aiortcdc import RTCIceCandidate, RTCSessionDescription
 from aiortcdc.sdp import candidate_from_sdp, candidate_to_sdp
 
-
 def object_from_string(message_str):
-    message = json.loads(message_str)
+    #print("object_from_string: " + message_str)
+    try:
+        message = json.loads(message_str)
+    except:
+        #print("json.loads failed.")
+        #traceback.print_exc()
+        return message_str
+
     if message['type'] in ['answer', 'offer']:
         return RTCSessionDescription(**message)
     elif message['type'] == 'candidate':
@@ -30,10 +37,13 @@ def object_to_string(obj):
             'candidate': 'candidate:' + candidate_to_sdp(obj),
             'id': obj.sdpMid,
             'label': obj.sdpMLineIndex,
-            'type': 'candidate',
+            'type': 'candidate'
         }
-    else:
+    elif obj == None:
         message = {'type': 'bye'}
+    else:
+        return str(obj)
+
     return json.dumps(message, sort_keys=True)
 
 
@@ -193,18 +203,25 @@ class WebsocketSignaling:
 
     async def receive(self):
         try:
-            data = await self._websocket.recv()
-        except asyncio.IncompleteReadError:
-            return
-        ret = object_from_string(data)
-        if ret == None:
-            print("remote host says good bye!")
+            try:
+                data = await self._websocket.recv()
+            except asyncio.IncompleteReadError:
+                return
 
-        return ret
+            #print(str(type(data)))
+            ret = object_from_string(data)
+            if ret == None:
+                print("remote host says good bye!")
+
+            return ret
+        except:
+            #print("maybe JSON decode error occur at WebsocketSignaling.receive func")
+            #traceback.print_exc()
+            return "ignoalable error"
 
     async def send(self, descr):
         data = object_to_string(descr)
-        await self._websocket.send(data + '\n')
+        await self._websocket.send('aaa_chsig:' + data + '\n')
 
 def add_signaling_arguments(parser):
     """
