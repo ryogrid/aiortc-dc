@@ -14,10 +14,10 @@ except ImportError:
 import sys
 import os
 from os import path
-sys.path.append(path.dirname(path.abspath(__file__)) + "/../../")
+#sys.path.append(path.dirname(path.abspath(__file__)) + "/../../")
 
 from aiortcdc import RTCPeerConnection, RTCSessionDescription
-from aiortcdc.contrib.signaling import add_signaling_arguments, create_signaling
+from aiortcdc.contrib.signaling_share_ws import add_signaling_arguments, create_signaling
 
 async def consume_signaling(pc, signaling):
     while True:
@@ -56,6 +56,8 @@ async def run_answer(pc, signaling, filename):
                 fp.write(message)
             else:
                 elapsed = time.time() - start
+                if elapsed == 0:
+                    elapsed = 0.001
                 print('received %d bytes in %.1f s (%.3f Mbps)' % (
                     octets, elapsed, octets * 8 / elapsed / 1000000))
 
