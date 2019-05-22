@@ -22,6 +22,7 @@ setuptools.setup(
     name='aiortc-dc',
     version='0.5.4',
     description='data channel feature only version of aiortc which implements WebRTC and ORTC',
+    long_description_content_type="text/markdown",
     long_description=long_description,
     url='https://github.com/ryogrid/aiortc-dc',
     author='Jeremy Lainé and Ryo Kanbayashi',

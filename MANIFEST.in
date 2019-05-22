@@ -1,2 +1,2 @@
 include LICENSE
-recursive-include examples *.html *.py *.rst *.wav
+recursive-include examples *.html *.py *.wav *.rst
